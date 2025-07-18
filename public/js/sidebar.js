@@ -2,12 +2,18 @@ function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
   const content = document.querySelector('.content');
 
+  // For desktop: collapse/expand
   sidebar.classList.toggle('collapsed');
   content.classList.toggle('collapsed');
 
+  // For mobile: slide in/out
+  sidebar.classList.toggle('open');
+
+  // Save state only for collapse (desktop)
   const isCollapsed = sidebar.classList.contains('collapsed');
   localStorage.setItem('sidebar', isCollapsed ? 'collapsed' : 'expanded');
 }
+
 
 function toggleDarkMode() {
   const body = document.body;

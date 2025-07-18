@@ -1,3 +1,6 @@
+/* ===========================
+   COLOR VARIABLES (LIGHT & DARK MODE)
+   =========================== */
 :root {
   --bg-color: #ffffff;
   --text-color: #333333;
@@ -6,6 +9,7 @@
   --btn-text: white;
 }
 
+/* Dark theme overrides */
 body.dark {
   --bg-color: #1e1e1e;
   --text-color: #e0e0e0;
@@ -14,6 +18,9 @@ body.dark {
   --btn-text: white;
 }
 
+/* ===========================
+   GLOBAL RESET & BASE STYLES
+   =========================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,9 +33,12 @@ body {
   color: var(--text-color);
 }
 
+/* ===========================
+   TOP BAR (HEADER)
+   =========================== */
 .top-bar {
   background: var(--sidebar-color);
-  padding: 1rem;
+  padding: 1rem;    /* Handles spacing uniformly */
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -37,20 +47,33 @@ body {
   z-index: 1001;
 }
 
+/* Hamburger icon (☰) */
 .menu-btn {
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
+  padding: 0.5rem 0.8rem;  /* Match sidebar link padding */
+  margin-left: 0;       /* Let top-bar control the padding */
   display: flex;
   align-items: center;
+  transition: background 0.2s ease;
 }
 
+.menu-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Light hover effect */
+  border-radius: 5px;
+}
+
+/* ===========================
+   LAYOUT CONTAINER
+   =========================== */
 .container {
   display: flex;
   min-height: 100vh;
 }
 
+/* ===========================
+   SIDEBAR STYLES
+   =========================== */
 .sidebar {
   width: 220px;
   background: var(--sidebar-color);
@@ -65,6 +88,7 @@ body {
   gap: 1rem;
 }
 
+/* Sidebar links (icon + label) */
 .sidebar a {
   display: flex;
   align-items: center;
@@ -75,19 +99,23 @@ body {
   font-size: 1.1rem;
 }
 
+/* Icon style */
 .sidebar a .icon {
   font-size: 1.3rem;
 }
 
+/* Label style */
 .sidebar a .label {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
+/* Collapsed sidebar (minimized) */
 .sidebar.collapsed {
   width: 60px;
   overflow-x: hidden;
 }
 
+/* Hide labels when collapsed */
 .sidebar.collapsed a .label {
   opacity: 0;
   visibility: hidden;
@@ -95,6 +123,9 @@ body {
   overflow: hidden;
 }
 
+/* ===========================
+   MAIN CONTENT AREA
+   =========================== */
 .content {
   margin-left: 220px;
   padding: 2rem;
@@ -102,10 +133,14 @@ body {
   transition: margin-left 0.3s ease;
 }
 
+/* Adjust margin when sidebar is collapsed */
 .content.collapsed {
   margin-left: 60px;
 }
 
+/* ===========================
+   TYPOGRAPHY INSIDE CONTENT
+   =========================== */
 .content h1 {
   margin-bottom: 1rem;
 }
@@ -116,7 +151,9 @@ body {
   color: var(--text-color);
 }
 
-/* Buttons */
+/* ===========================
+   BUTTON STYLES
+   =========================== */
 .btn, .btn-small {
   background-color: var(--btn-bg);
   color: var(--btn-text);
@@ -134,11 +171,14 @@ body {
   padding: 0.3rem 0.8rem;
 }
 
+/* Red variant for delete */
 .btn.red, .btn-small.red {
   background-color: #e74c3c;
 }
 
-/* Post list */
+/* ===========================
+   POST LIST STYLES
+   =========================== */
 ul.post-list {
   list-style: none;
   padding-left: 0;
@@ -151,6 +191,7 @@ ul.post-list li {
   border-radius: 5px;
 }
 
+/* Dark mode version of post item */
 body.dark ul.post-list li {
   background: #333;
 }
@@ -159,16 +200,45 @@ body.dark ul.post-list li {
   margin-top: 0.5rem;
 }
 
-/* Responsive behavior */
+
+/* Style for dark mode toggle */
+.dark-mode-toggle {
+  font-size: 1.3rem;
+  cursor: pointer;          /* 👈 show hand cursor */
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.dark-mode-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Light hover effect */
+  border-radius: 5px;
+}
+
+/* Dark mode hover effect */
+body.dark .menu-btn:hover,
+body.dark .dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===========================
+   RESPONSIVE DESIGN (MOBILE)
+   =========================== */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
     position: fixed;
+    left: 0;
+    top: 3.5rem;
+    width: 220px;
+    height: calc(100% - 3.5rem);
+    transition: transform 0.3s ease;
     z-index: 1000;
   }
 
   .sidebar.open {
-    transform: translateX(0);
+    transform: translateX(0); /* Show sidebar */
   }
 
   .content {
@@ -180,3 +250,4 @@ body.dark ul.post-list li {
     justify-content: flex-start;
   }
 }
+

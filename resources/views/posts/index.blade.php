@@ -5,7 +5,7 @@
 @section('content')
     <h1>All Posts</h1>
 
-    <a href="{{ route('posts.create') }}" class="btn">Create New Post</a>
+    <!--<a href="{{ route('posts.create') }}" class="btn">Create New Post</a>-->
 
     <ul class="post-list">
         @foreach($posts as $post)
